@@ -293,6 +293,13 @@ Mitigated via streaming on Companion side
 (Add here)
 <img width="1440" height="900" alt="image" src="https://github.com/user-attachments/assets/c77cc3a5-1810-49fd-8746-d8261917d661" />
 
+<img width="197" height="900" alt="image" src="https://github.com/user-attachments/assets/a8af374b-7840-4017-be56-4cb1ffe070cc" />
+
+<img width="142" height="900" alt="image" src="https://github.com/user-attachments/assets/4277a8c5-b642-4d98-8c7d-f4a7cf692cc4" />
+
+<img width="238" height="896" alt="image" src="https://github.com/user-attachments/assets/82951f17-b3c0-47b3-b649-063e93e36805" />
+
+<img width="167" height="900" alt="image" src="https://github.com/user-attachments/assets/fcd95468-b4fe-4b6b-9f97-fa174d82aa1f" />
 
 ---
 
