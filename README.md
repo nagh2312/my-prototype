@@ -3,9 +3,15 @@ Here’s your content cleanly formatted in Markdown:
 ---
 
 # MindCanvas
-## Built w/o vibecoding- https://github.com/nagh2312/Claude_Hackathon_mspm
-## How We Built With Claude
+## Built with coding- https://github.com/nagh2312/Claude_Hackathon_mspm
+vercel deployment: https://claude-hackathon-mspm-m3tvznvff-nagh2312s-projects.vercel.app/
 
+We prioritized 1 feature in the one we could code for now, it can e found here in the above link and github
+
+
+## We Built With Claude.....vibecoding in this repo
+https://github.com/nagh2312/my-prototype
+https://my-prototype-6ogyqha7l-nagh2312s-projects.vercel.app/
 ---
 
 ## 1. What We Built and Why Claude Is Central to It
