@@ -303,7 +303,14 @@ Mitigated via streaming on Companion side
 
 ---
 
-## 8. Closing
+## 8. Architecture
+
+<img width="293" height="631" alt="image" src="https://github.com/user-attachments/assets/4531b524-e7ba-4943-89e3-f290e8edfcfa" />
+
+---
+
+
+## 9. Closing
 
 MindCanvas exists because of:
 
