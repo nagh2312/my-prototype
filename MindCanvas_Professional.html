@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCanvas - Emotional Wellness Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8f2f8 50%, #f0f0f8 100%);
+            color: #2d3748;
+            min-height: 100vh;
+        }
+
+        .serif-heading {
+            font-family: 'Noto Serif', serif;
+        }
+
+        /* Mental health color palette */
+        .gradient-calm {
+            background: linear-gradient(135deg, #e6f3ff 0%, #f0e6ff 50%, #ffe6f0 100%);
+        }
+
+        .gradient-serenity {
+            background: linear-gradient(135deg, #e8f5e9 0%, #e0f2f1 50%, #f1f8e9 100%);
+        }
+
+        .gradient-balance {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e3f2fd 50%, #fce4ec 100%);
+        }
+
+        .color-wellness {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .color-growth {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .color-peace {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .color-balance {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .canvas-shadow {
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+        }
+
+        .glass-effect {
+            background: rgba(240, 244, 248, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(230, 230, 250, 0.3);
+        }
+
+        .reflection-orb {
+            background: radial-gradient(circle at 30% 30%, #667eea 0%, #764ba2 50%, #43e97b 100%);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+            animation: breathing 4s infinite ease-in-out;
+        }
+
+        @keyframes breathing {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.95; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .mood-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mood-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .mood-tag.selected {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+
+        .mood-tag.secondary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            border-radius: 16px;
+            padding: 16px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 15px;
+            color: #2d3748;
+            transition: all 0.3s ease;
+        }
+
+        .input-field::placeholder {
+            color: #a0aec0;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .primary-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 14px 28px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+        }
+
+        .primary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);
+        }
+
+        .primary-button:active {
+            transform: translateY(0);
+        }
+
+        .secondary-button {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 1px solid #667eea;
+            border-radius: 20px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            background: rgba(102, 126, 234, 0.15);
+        }
+
+        .page {
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 24px;
+            canvas-shadow;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(230, 230, 250, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.12);
+        }
+
+        .emotion-wheel {
+            width: 100%;
+            height: 200px;
+            border-radius: 16px;
+            background: conic-gradient(
+                from 0deg,
+                #667eea 0deg,
+                #764ba2 60deg,
+                #4facfe 120deg,
+                #43e97b 180deg,
+                #38f9d7 240deg,
+                #fee140 300deg,
+                #667eea 360deg
+            );
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+        }
+
+        .intensity-bar {
+            height: 24px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .heat-map-cell {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .heat-map-cell:hover {
+            transform: scale(1.1);
+        }
+
+        .header-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4facfe 100%);
+            color: white;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(230, 230, 250, 0.3);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 6px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            background: linear-gradient(135deg, rgba(240, 244, 248, 0.95) 0%, rgba(230, 230, 250, 0.8) 100%);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(230, 230, 250, 0.3);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #667eea;
+        }
+
+        .nav-item:hover {
+            color: #667eea;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active .icon-circle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .sidebar {
+            background: rgba(240, 244, 248, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(230, 230, 250, 0.3);
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, rgba(230, 230, 250, 0.5) 0%, rgba(230, 240, 250, 0.5) 100%);
+            border-radius: 16px;
+            padding: 16px;
+            border-left: 4px solid #667eea;
+        }
+
+        .line-accent {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, transparent 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-calm min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar hidden fixed left-0 top-0 h-full w-64 z-50 overflow-y-auto">
+            <div class="p-6">
+                <h2 class="serif-heading text-2xl font-bold text-gray-800 mb-8">Navigation</h2>
+                <div class="space-y-2">
+                    <button onclick="goToPage('home')" class="w-full text-left py-3 px-4 rounded-12 hover:bg-gray-100 text-gray-700 font-medium">Home</button>
+                    <button onclick="goToPage('journal')" class="w-full text-left py-3 px-4 rounded-12 hover:bg-gray-100 text-gray-700 font-medium">New Entry</button>
+                    <button onclick="goToPage('insights')" class="w-full text-left py-3 px-4 rounded-12 hover:bg-gray-100 text-gray-700 font-medium">Insights</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Overlay -->
+        <div id="overlay" class="hidden fixed inset-0 bg-black/20 z-40" onclick="toggleSidebar()"></div>
+
+        <!-- Header -->
+        <header class="header-gradient sticky top-0 z-30">
+            <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+                <button onclick="toggleSidebar()" class="text-white text-xl font-bold">☰</button>
+                <h1 class="serif-heading text-xl font-bold">MindCanvas</h1>
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold">A</div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-5xl mx-auto px-6 py-8 pb-32">
+            <!-- HOME PAGE -->
+            <div id="home" class="page fade-in">
+                <div class="mb-12">
+                    <h2 class="serif-heading text-4xl font-bold text-gray-800 mb-2">Welcome back</h2>
+                    <p class="text-gray-600">Your emotional journey continues. Let's explore what's on your mind.</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-3 gap-4 mb-12">
+                    <div class="stat-card canvas-shadow">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Total Entries</div>
+                    </div>
+                    <div class="stat-card canvas-shadow">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">This Month</div>
+                    </div>
+                    <div class="stat-card canvas-shadow">
+                        <div class="stat-number">6.2</div>
+                        <div class="stat-label">Avg Mood</div>
+                    </div>
+                </div>
+
+                <!-- New Entry CTA -->
+                <button onclick="goToPage('journal')" class="w-full mb-12">
+                    <div class="card canvas-shadow hover:shadow-lg">
+                        <div class="flex items-center gap-6">
+                            <div class="w-16 h-16 rounded-16 color-wellness flex items-center justify-center flex-shrink-0">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-semibold text-gray-800 text-lg">Create a New Entry</h3>
+                                <p class="text-gray-600 text-sm">Reflect on your day and discover insights</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Recent Entries -->
+                <div>
+                    <h3 class="serif-heading text-xl font-bold text-gray-800 mb-4">Recent Reflections</h3>
+                    <div id="recent-entries" class="space-y-4">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOURNAL ENTRY PAGE -->
+            <div id="journal" class="page fade-in hidden">
+                <div class="mb-8">
+                    <h2 class="serif-heading text-4xl font-bold text-gray-800 mb-2">Reflect & Create</h2>
+                    <p class="text-gray-600">Write freely. Your words become meaningful insights.</p>
+                </div>
+
+                <div class="card canvas-shadow">
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">What's on your mind?</label>
+                        <textarea id="entry-text" class="input-field w-full h-64" placeholder="Write freely. A few sentences, a voice note transcript, a rambling thought — whatever comes out. There's no right way here."></textarea>
+                    </div>
+
+                    <!-- Mood Analysis -->
+                    <div id="mood-analysis" class="hidden mb-6 p-6 bg-blue-50 rounded-16 border border-blue-100">
+                        <h3 class="font-semibold text-gray-800 mb-4">Detected Emotions</h3>
+                        <div id="mood-chips" class="flex flex-wrap gap-2 mb-4">
+                            <!-- Populated by JS -->
+                        </div>
+                        <p class="text-xs text-gray-600">Tap to adjust your emotional tags</p>
+                    </div>
+
+                    <!-- Reflection Orb -->
+                    <div id="reflection-orb-container" class="hidden mb-8 flex justify-center">
+                        <div class="w-40 h-40 rounded-full reflection-orb flex items-center justify-center flex-col text-center px-4">
+                            <p class="serif-heading text-xl font-bold text-white mb-2" id="primary-emotion">Reflective</p>
+                            <p class="text-xs uppercase tracking-wide text-white/80" id="emotion-essence">Primary State</p>
+                        </div>
+                    </div>
+
+                    <!-- Guidance -->
+                    <div id="guidance-section" class="hidden mb-6 insight-box">
+                        <h3 class="font-semibold text-gray-800 mb-3">Evidence-Based Guidance</h3>
+                        <p class="font-semibold text-gray-800 text-sm mb-2" id="guidance-title">Grounding Technique</p>
+                        <p class="text-sm text-gray-700 mb-4" id="guidance-text"></p>
+                        <p class="text-xs text-gray-600" id="guidance-source"></p>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button onclick="submitEntry()" class="flex-1 primary-button">Save & Analyze</button>
+                        <button onclick="goToPage('home')" class="flex-1 secondary-button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MOOD IDENTIFICATION PAGE -->
+            <div id="mood-id" class="page fade-in hidden">
+                <div class="mb-8">
+                    <h2 class="serif-heading text-4xl font-bold text-gray-800 mb-2">Mood Identification</h2>
+                    <p class="text-gray-600">Refining the nuances of your emotional state</p>
+                </div>
+
+                <!-- Primary Emotion -->
+                <div class="card canvas-shadow mb-8">
+                    <div class="text-center mb-8">
+                        <div class="w-48 h-48 mx-auto rounded-full reflection-orb flex items-center justify-center flex-col">
+                            <p class="serif-heading text-2xl font-bold text-white mb-2" id="primary-mood-name">Reflective</p>
+                            <p class="text-xs uppercase tracking-wide text-white/80">Primary Essence</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-gray-700 italic mb-4" id="primary-mood-description">
+                        The analysis detects introspective and contemplative qualities in your reflection.
+                    </p>
+                </div>
+
+                <!-- Emotion Wheel -->
+                <div class="card canvas-shadow mb-8">
+                    <h3 class="font-semibold text-gray-800 mb-4">Emotional Spectrum</h3>
+                    <p class="text-sm text-gray-600 mb-4">Based on the Plutchik emotion model for precise emotional mapping</p>
+                    <div class="emotion-wheel mb-4"></div>
+                </div>
+
+                <!-- Suggested Emotions -->
+                <div class="card canvas-shadow mb-8">
+                    <h3 class="serif-heading text-lg font-bold text-gray-800 mb-4">Emotional Tags</h3>
+                    <p class="text-sm text-gray-600 mb-4">Select emotions that resonate with your experience</p>
+                    <div id="suggested-tags" class="flex flex-wrap gap-2 mb-6">
+                        <!-- Populated by JS -->
+                    </div>
+                    <button class="text-sm font-semibold text-gray-700 hover:text-gray-900">+ Add Custom Tag</button>
+                </div>
+
+                <div class="flex gap-3">
+                    <button onclick="completeReflection()" class="flex-1 primary-button">Complete Reflection</button>
+                    <button onclick="goToPage('home')" class="flex-1 secondary-button">Back</button>
+                </div>
+            </div>
+
+            <!-- ENTRY DETAIL PAGE -->
+            <div id="entry-detail" class="page fade-in hidden">
+                <button onclick="goToPage('home')" class="text-gray-600 hover:text-gray-800 font-semibold mb-6 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    Back
+                </button>
+
+                <div class="mb-8">
+                    <p class="text-gray-600 text-sm mb-2" id="entry-date"></p>
+                    <h2 class="serif-heading text-4xl font-bold text-gray-800" id="entry-title"></h2>
+                </div>
+
+                <!-- Artwork -->
+                <div id="entry-artwork" class="w-full h-48 rounded-20 mb-8 canvas-shadow bg-gradient-to-br from-blue-300 via-purple-300 to-pink-300"></div>
+
+                <!-- Entry Text -->
+                <div class="card canvas-shadow mb-8">
+                    <p class="text-gray-700 leading-relaxed" id="entry-body"></p>
+                </div>
+
+                <!-- Emotions -->
+                <div class="card canvas-shadow mb-8">
+                    <h3 class="font-semibold text-gray-800 mb-4">Emotions Captured</h3>
+                    <div id="entry-moods" class="flex flex-wrap gap-2">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Intensity -->
+                <div class="card canvas-shadow">
+                    <h3 class="font-semibold text-gray-800 mb-4">Emotional Intensity</h3>
+                    <div id="intensity-bars" class="mb-3 flex gap-1">
+                        <!-- Populated by JS -->
+                    </div>
+                    <p class="text-sm text-gray-600" id="intensity-text">6 / 10</p>
+                </div>
+            </div>
+
+            <!-- INSIGHTS PAGE -->
+            <div id="insights" class="page fade-in hidden">
+                <div class="mb-8">
+                    <p class="text-gray-600 text-sm uppercase tracking-wide mb-2">Clinical Summary</p>
+                    <h2 class="serif-heading text-4xl font-bold text-gray-800 mb-2">Monthly Journey</h2>
+                    <p class="text-gray-600">Comprehensive emotional patterns for your clinical review</p>
+                </div>
+
+                <!-- Export -->
+                <button class="w-full primary-button mb-8">Export to Clinician</button>
+
+                <!-- Heat Map -->
+                <div class="card canvas-shadow mb-8">
+                    <h3 class="serif-heading text-lg font-bold text-gray-800 mb-6">Mood Heat Map</h3>
+                    <div class="grid grid-cols-7 gap-2 text-center text-xs mb-4">
+                        <div class="font-semibold text-gray-700 text-xs col-span-7">October 2024</div>
+                        <div class="text-gray-600 font-semibold text-xs">Sun</div>
+                        <div class="text-gray-600 font-semibold text-xs">Mon</div>
+                        <div class="text-gray-600 font-semibold text-xs">Tue</div>
+                        <div class="text-gray-600 font-semibold text-xs">Wed</div>
+                        <div class="text-gray-600 font-semibold text-xs">Thu</div>
+                        <div class="text-gray-600 font-semibold text-xs">Fri</div>
+                        <div class="text-gray-600 font-semibold text-xs">Sat</div>
+                        
+                        <!-- Heat map cells -->
+                        <div class="heat-map-cell bg-gray-200"></div>
+                        <div class="heat-map-cell bg-blue-200"></div>
+                        <div class="heat-map-cell bg-purple-300"></div>
+                        <div class="heat-map-cell color-wellness"></div>
+                        <div class="heat-map-cell bg-blue-200"></div>
+                        <div class="heat-map-cell color-peace"></div>
+                        <div class="heat-map-cell color-wellness"></div>
+                        
+                        <div class="heat-map-cell bg-blue-200"></div>
+                        <div class="heat-map-cell bg-purple-300"></div>
+                        <div class="heat-map-cell color-wellness"></div>
+                        <div class="heat-map-cell color-balance"></div>
+                        <div class="heat-map-cell color-wellness"></div>
+                        <div class="heat-map-cell bg-gray-200"></div>
+                        <div class="heat-map-cell bg-blue-200"></div>
+                    </div>
+                </div>
+
+                <!-- Executive Summary -->
+                <div class="card canvas-shadow mb-8">
+                    <h3 class="serif-heading text-lg font-bold text-gray-800 mb-4">Executive Summary</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-semibold text-gray-800">Patient Engagement</p>
+                            <p class="text-gray-600 text-sm">84% Consistency</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Average Mood Score</p>
+                            <p class="text-gray-600 text-sm">6.2 / 10</p>
+                        </div>
+                        <p class="text-gray-700 italic text-sm mt-4">The patient demonstrates improved emotional awareness and consistent engagement with reflective practice. Notable decrease in morning anxiety patterns.</p>
+                    </div>
+                </div>
+
+                <!-- Observed Themes -->
+                <div class="card canvas-shadow mb-8">
+                    <h3 class="serif-heading text-lg font-bold text-gray-800 mb-4">Observed Themes</h3>
+                    <div class="space-y-4">
+                        <div class="insight-box">
+                            <p class="font-semibold text-gray-800 text-sm">Work-Related Stress</p>
+                            <p class="text-gray-600 text-xs mt-1">+18% elevation Mon-Wed</p>
+                        </div>
+                        <div class="insight-box">
+                            <p class="font-semibold text-gray-800 text-sm">Mindfulness Response</p>
+                            <p class="text-gray-600 text-xs mt-1">Strong positive correlation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="goToPage('home')" class="w-full secondary-button">Back to Dashboard</button>
+            </div>
+        </main>
+
+        <!-- Navigation -->
+        <nav class="fixed bottom-0 left-0 right-0 z-20">
+            <div class="max-w-5xl mx-auto px-6 py-4 flex justify-around items-center">
+                <button onclick="goToPage('home')" class="nav-item active">
+                    <div class="icon-circle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-3m0 0l7-4 7 4M5 9v7a1 1 0 001 1h12a1 1 0 001-1V9m-9 11l-4-4m0 0l-2-2m2 2l2-2m-2 2l-7-4"></path></svg>
+                    </div>
+                    <span>Reflect</span>
+                </button>
+                <button onclick="goToPage('mood-id')" class="nav-item">
+                    <div class="icon-circle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <span>Moods</span>
+                </button>
+                <button onclick="goToPage('insights')" class="nav-item">
+                    <div class="icon-circle">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <span>Insights</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        const entries = [
+            {
+                id: 1,
+                date: "October 18, 2024",
+                title: "Morning Stillness",
+                text: "There was a specific kind of stillness today—not the empty kind, but one that felt heavy with meaning. Like the pause between a breath and a sigh. I found myself watching the light shift across the floor for nearly an hour. The world inside my head felt quieter.",
+                moods: ["Peaceful", "Contemplative", "Grounded"],
+                intensity: 6,
+                artwork: "from-blue-300 via-purple-300 to-pink-200"
+            },
+            {
+                id: 2,
+                date: "October 17, 2024",
+                title: "Restless Energy",
+                text: "Today felt different. Scattered. My thoughts kept jumping from one thing to another, and I couldn't settle into anything for long. But there was an energy to it—like electricity running through my hands. Not quite anxiety, more like potential waiting to be channeled.",
+                moods: ["Energetic", "Uncertain", "Hopeful"],
+                intensity: 7,
+                artwork: "from-purple-300 via-pink-300 to-orange-200"
+            },
+            {
+                id: 3,
+                date: "October 15, 2024",
+                title: "Quiet Gratitude",
+                text: "Small moments today felt significant. A conversation with an old friend. The smell of rain. The way everything just seemed to align. I haven't felt this grateful in weeks.",
+                moods: ["Grateful", "Connected", "Joyful"],
+                intensity: 8,
+                artwork: "from-green-300 via-blue-300 to-teal-200"
+            }
+        ];
+
+        let selectedEntry = null;
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('hidden');
+            overlay.classList.toggle('hidden');
+        }
+
+        function goToPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById(page).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            const navItems = document.querySelectorAll('.nav-item');
+            if (page === 'home') navItems[0].classList.add('active');
+            else if (page === 'mood-id') navItems[1].classList.add('active');
+            else if (page === 'insights') navItems[2].classList.add('active');
+
+            if (page === 'entry-detail' && selectedEntry) displayEntryDetail();
+            else if (page === 'home') displayRecentEntries();
+
+            document.getElementById('sidebar').classList.add('hidden');
+            document.getElementById('overlay').classList.add('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function displayRecentEntries() {
+            const container = document.getElementById('recent-entries');
+            container.innerHTML = entries.map(entry => `
+                <button onclick="viewEntry(${entry.id})" class="w-full text-left">
+                    <div class="card canvas-shadow hover:shadow-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <p class="text-xs text-gray-600 font-semibold">${entry.date}</p>
+                            <span class="text-xs font-bold bg-purple-100 text-purple-700 px-2 py-1 rounded-full">${entry.intensity}/10</span>
+                        </div>
+                        <h3 class="serif-heading text-lg font-semibold text-gray-800 mb-2">${entry.title}</h3>
+                        <p class="text-gray-600 text-sm line-clamp-2 mb-3">${entry.text}</p>
+                        <div class="flex gap-2 flex-wrap">
+                            ${entry.moods.slice(0, 2).map(m => `<span class="mood-tag text-xs">${m}</span>`).join("")}
+                        </div>
+                    </div>
+                </button>
+            `).join("");
+        }
+
+        function viewEntry(id) {
+            selectedEntry = entries.find(e => e.id === id);
+            goToPage('entry-detail');
+        }
+
+        function displayEntryDetail() {
+            if (!selectedEntry) return;
+            
+            document.getElementById('entry-date').textContent = selectedEntry.date;
+            document.getElementById('entry-title').textContent = selectedEntry.title;
+            document.getElementById('entry-body').textContent = selectedEntry.text;
+            document.getElementById('entry-artwork').className = `w-full h-48 rounded-20 mb-8 canvas-shadow bg-gradient-to-br ${selectedEntry.artwork}`;
+            
+            document.getElementById('entry-moods').innerHTML = selectedEntry.moods.map(m => 
+                `<span class="mood-tag text-xs">${m}</span>`
+            ).join("");
+            
+            document.getElementById('intensity-text').textContent = `${selectedEntry.intensity} / 10`;
+            document.getElementById('intensity-bars').innerHTML = Array.from({length: 10}, (_, i) => 
+                `<div class="h-4 flex-1 rounded-2 ${i < selectedEntry.intensity ? 'bg-gradient-to-r from-purple-400 to-purple-600' : 'bg-gray-200'}"></div>`
+            ).join("");
+        }
+
+        function submitEntry() {
+            const text = document.getElementById('entry-text').value;
+            if (text.trim()) {
+                document.getElementById('entry-text').value = '';
+                goToPage('mood-id');
+            }
+        }
+
+        function completeReflection() {
+            goToPage('home');
+        }
+
+        // Initialize
+        displayRecentEntries();
+    </script>
+</body>
+</html>
